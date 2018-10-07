@@ -32,7 +32,13 @@ bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 importprivkey 
 
 ## fund an address
 ```
-bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 sendtoaddress muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 sendtoaddress muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9 10
+```
+
+# Examine on console
+## Check bitcoin balance
+```
+bitcoin.getBalance(["muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9"]).then(console.log)
 ```
 
 ## Chain Abstraction Layer <img align="right" src="./liquality-logo.png" height="80px" />
