@@ -1,16 +1,26 @@
 #End-to-end Test Case
-1. Want to swap X BTC for Y ETH
-2. Generate secret
-3. Copy over Secret Hash to 'Initiate Swap'
-4. Fill in A's BTC address: muWrnsfYwzv24sAuC1t45JssWttHUtA162
-5. Fill in A's ETH address: 0x5a3df33ebab91eb80712493c8ad30855b882c669
-6. Fill in B's BTC address: muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
-7. Fill in B's ETH address: 0x1cdf3aac5329aa9d1dee420468a72bad24055885
+1. GOTO https://localhost:9000/examples/swap/_swap-e2e-local.html
+2. Fill in Bitcoin params: 1
+3. Click on Generate Secret
+## A Initiates SWAP on Bitcoin
+4. Copy over Secret Hash to Bitcoin Initiate Swap
+5. Click on Initiate Swap
+## B Initiates SWAP on Ethereum
+6. Fill in Secret Hash at Ethereum Initiate Swap
+7. Click on Initiate Swap
+## A Claims SWAP on Ethereum
+8. Fill in Secret from A
+9. Fill in Initiate Transaction Hash from B's Initiation on Ethereum
+## B Claims SWAP on Bitcoin
+8. Fill in Secret from A
+9. Fill in Initiate Transaction Hash from A's Initiation on Bitcoin
 
 
-Bitcoin addresses
-- muWrnsfYwzv24sAuC1t45JssWttHUtA162
-- muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
+# Addresses
+A's BTC address: muWrnsfYwzv24sAuC1t45JssWttHUtA162
+A's ETH address: 0x5a3df33ebab91eb80712493c8ad30855b882c669
+B's BTC address: muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
+B's ETH address: 0x1cdf3aac5329aa9d1dee420468a72bad24055885
 
 # Bitcoin tips
 ## Host Bitcoin private net
