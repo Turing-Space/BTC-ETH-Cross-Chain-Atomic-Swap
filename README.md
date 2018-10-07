@@ -1,3 +1,28 @@
+# Host Bitcoin private net
+```
+bitcoind -txindex -regtest -reindex -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332
+```
+
+# Interact with the Bitcoin private net via console
+```
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 <function_name> <function_param>
+```
+
+# Generate a Bitcoin address
+```
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 getrawchangeaddress "legacy"
+```
+
+# get help
+```
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 help
+```
+
+# generate 100 blocks
+```
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 generate 100
+```
+
 # Chain Abstraction Layer <img align="right" src="./liquality-logo.png" height="80px" />
 
 [![ChainAbstractionLayer](https://travis-ci.org/liquality/chainabstractionlayer.svg?branch=master)](https://travis-ci.org/liquality/chainabstractionlayer)
