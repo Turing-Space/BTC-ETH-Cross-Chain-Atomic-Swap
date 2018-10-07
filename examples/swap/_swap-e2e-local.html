@@ -22,59 +22,82 @@
         width:80px
     }
     /* button {
-      .btn-default
+      .btn-default  
     } */
+    /* .well {
+      background-color: gray;
+    } */
+    td {
+      /* margin:100px; */
+      padding: 20px;
+    }
   </style>
   <h1>BTC - ETH Cross Chain Atomic Swap</h1>
   <table width="100%">
     <thead>
-      <td><img src="image/btc.png" style="width:50px" class="center"><h1><strong>Bitcoin</strong></h1></td>
-      <td><img src="image/eth.png" style="width:50px" class="center"><h1><strong>Ethereum</strong></h1></td>
+      <td><img src="image/btc.png" style="width:50px" class="center"><h1><strong>Bitcoin (Player <span style="color:red">A</span>)</strong></h1></td>
+      <td><img src="image/eth.png" style="width:50px" class="center"><h1><strong>Ethereum (Player <span style="color:blue">B</span>)</strong></h1></td>
     </thead>
     <tr>
       <td>
         <!-- <h3>Generate secret:</h3>         -->
-        <p>I want to swap <input type="text" id="btcMessage" value="" /> BTC</p>
-        <p><button class="btn btn-dark"  id="btcGenerateSecret">Generate Secret</button></p>
-        <p>secret: <textarea class="form-group" id="btcGenerateSecretResult"></textarea></p>
-        <p>secretHash: <textarea class="form-group" id="btcGenerateSecretResultHash"></textarea></p>
-        <h3>Initiate swap:</h3>
-        <p>value: <input type="text" id="btcFundValue" value="100000" /></p>
-        <p>recipientAddress: <input type="text" id="btcRecipientAddress" value="muWrnsfYwzv24sAuC1t45JssWttHUtA162" /></p>
-        <p>refundAddress: <input type="text" id="btcRefundAddress" value="muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9" /></p>
-        <p>secretHash: <input type="text" id="btcSecretHash" /></p>
-        <p>expiration: <input type="text" id="btcExpiration" value="10" /></p>
-        <p><button class="btn btn-dark"  id="btcInitiateSwap">Initiate Swap</button></p>
-        <p>swap bytecode: <textarea class="form-group" id="btcSwapBytecode"></textarea></p>
-        <p>transaction hash: <textarea class="form-group" id="btcInitiateSwapResult"></textarea></p>
-        <h3>Claim swap:</h3>
-        <p><strong>Wait until initiation transaction has been confirmed!</strong></p>
-        <p>secret: <input type="text" id="btcClaimSecret" /></p>
-        <p>initiationTxHash: <input type="text" id="btcInitiationTxHash" /></p>
-        <p><button class="btn btn-dark"  id="btcClaimSwap">Claim Swap</button></p>
-        <p>transaction hash: <textarea class="form-group" id="btcClaimSwapResult"></textarea></p>
+        <div class="well">
+          <p>I want to swap <input type="text" id="btcMessage" value="100000" style="width:100px" /> BTC for <input type="text" value="3000000" style="width:100px" /> ETH</p>
+          <p><button class="btn btn-dark"  id="btcGenerateSecret">Generate Secret</button></p>
+          <p>secret: <textarea class="form-group" id="btcGenerateSecretResult"></textarea></p>
+          <p>secretHash: <textarea class="form-group" id="btcGenerateSecretResultHash"></textarea></p>
+        </div>
+        <hr/>
+        <div class="well">
+          <h3><strong style="color:red">A</strong>: Initiate Swap</h3>
+          <p>value: <input type="text" id="btcFundValue" value="100000" /></p>
+          <p>recipientAddress: <input type="text" id="btcRecipientAddress" value="muWrnsfYwzv24sAuC1t45JssWttHUtA162" style="width:380px" /></p>
+          <p>refundAddress: <input type="text" id="btcRefundAddress" value="muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9" style="width:380px" /></p>
+          <p>secretHash: <input type="text" id="btcSecretHash" /></p>
+          <p>expiration: <input type="text" id="btcExpiration" value="10" /></p>
+          <p><button class="btn btn-dark"  id="btcInitiateSwap">Initiate Swap</button></p>
+          <p>swap bytecode: <textarea class="form-group" id="btcSwapBytecode"></textarea></p>
+          <p>transaction hash: <textarea class="form-group" id="btcInitiateSwapResult"></textarea></p>
+        </div>
+        <hr/>
+        <div class="well">
+          <h3><strong style="color:blue">B</strong>: Claim Swap</h3>
+          <p><strong>Wait until initiation transaction has been confirmed!</strong></p>
+          <p>secret: <input type="text" id="btcClaimSecret" /></p>
+          <p>initiationTxHash: <input type="text" id="btcInitiationTxHash" /></p>
+          <p><button class="btn btn-dark"  id="btcClaimSwap">Claim Swap</button></p>
+          <p>transaction hash: <textarea class="form-group" id="btcClaimSwapResult"></textarea></p>
+        </div>
       </td>
       <td>
         <!-- <h3>Generate secret:</h3> -->
-        <p>I want to swap <input type="text" id="ethMessage" value="" /> ETH</p>
-        <p><button class="btn btn-dark"  id="ethGenerateSecret">Generate Secret</button></p>
-        <p>secret: <textarea class="form-group" id="ethGenerateSecretResult"></textarea></p>
-        <p>secretHash: <textarea class="form-group" id="ethGenerateSecretResultHash"></textarea></p>
-        <h3>Initiate swap:</h3>
-        <p>value: <input type="text" id="ethFundValue" value="100" /></p>
-        <p>recipientAddress: <input type="text" id="ethRecipientAddress" value="0x5a3df33ebab91eb80712493c8ad30855b882c669" /></p>
-        <p>refundAddress: <input type="text" id="ethRefundAddress" value="0x1cdf3aac5329aa9d1dee420468a72bad24055885" /></p>
-        <p>secretHash: <input type="text" id="ethSecretHash" /></p>
-        <p>expiration: <input type="text" id="ethExpiration" value="1568194353" /></p>
-        <p><button class="btn btn-dark"  id="ethInitiateSwap">Initiate Swap</button></p>
-        <p>swap bytecode: <textarea class="form-group" id="ethSwapBytecode"></textarea></p>
-        <p>transaction hash: <textarea class="form-group" id="ethInitiateSwapResult"></textarea></p>
-        <h3>Claim swap:</h3>
-        <p><strong>Wait until initiation transaction has been confirmed!</strong></p>
-        <p>secret: <input type="text" id="ethClaimSecret" /></p>
-        <p>initiationTxHash: <input type="text" id="ethInitiationTxHash" /></p>
-        <p><button class="btn btn-dark"  id="ethClaimSwap">Claim Swap</button></p>
-        <p>transaction hash: <textarea class="form-group" id="ethClaimSwapResult"></textarea></p>
+        <div class="well">
+          <p>I want to swap <input type="text" id="ethMessage" value="3000000" style="width:100px" /> ETH for <input type="text" value="100000" style="width:100px" /> BTC </p>
+          <p><button class="btn btn-dark"  id="ethGenerateSecret">Generate Secret</button></p>
+          <p>secret: <textarea class="form-group" id="ethGenerateSecretResult"></textarea></p>
+          <p>secretHash: <textarea class="form-group" id="ethGenerateSecretResultHash"></textarea></p>
+        </div>
+        <hr/>
+        <div class="well">
+          <h3><strong style="color:blue">B</strong>: Initiate Swap</h3>
+          <p>value: <input type="text" id="ethFundValue" value="3000000" /></p>
+          <p>recipientAddress: <input type="text" id="ethRecipientAddress" value="0x5a3df33ebab91eb80712493c8ad30855b882c669" style="width:380px" /></p>
+          <p>refundAddress: <input type="text" id="ethRefundAddress" value="0x1cdf3aac5329aa9d1dee420468a72bad24055885" style="width:380px" /></p>
+          <p>secretHash: <input type="text" id="ethSecretHash" /></p>
+          <p>expiration: <input type="text" id="ethExpiration" value="1568194353" /></p>
+          <p><button class="btn btn-dark"  id="ethInitiateSwap">Initiate Swap</button></p>
+          <p>swap bytecode: <textarea class="form-group" id="ethSwapBytecode"></textarea></p>
+          <p>transaction hash: <textarea class="form-group" id="ethInitiateSwapResult"></textarea></p>
+        </div>
+        <hr/>
+        <div class="well">
+          <h3><strong style="color:red">A</strong>: Claim Swap</h3>
+          <p><strong>Wait until initiation transaction has been confirmed!</strong></p>
+          <p>secret: <input type="text" id="ethClaimSecret" /></p>
+          <p>initiationTxHash: <input type="text" id="ethInitiationTxHash" /></p>
+          <p><button class="btn btn-dark"  id="ethClaimSwap">Claim Swap</button></p>
+          <p>transaction hash: <textarea class="form-group" id="ethClaimSwapResult"></textarea></p>
+        </div>
       </td>
     </tr>
   </table>
