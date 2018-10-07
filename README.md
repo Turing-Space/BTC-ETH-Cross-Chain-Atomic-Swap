@@ -1,29 +1,40 @@
-# Host Bitcoin private net
+# Bitcoin tips
+## Host Bitcoin private net
 ```
 bitcoind -txindex -regtest -reindex -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332
 ```
 
-# Interact with the Bitcoin private net via console
+## Interact with the Bitcoin private net via console
 ```
 bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 <function_name> <function_param>
 ```
 
-# Generate a Bitcoin address
+## Generate a Bitcoin address
 ```
 bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 getrawchangeaddress "legacy"
 ```
 
-# get help
+## get help
 ```
 bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 help
 ```
 
-# generate 100 blocks
+## generate 100 blocks
 ```
 bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 generate 100
 ```
 
-# Chain Abstraction Layer <img align="right" src="./liquality-logo.png" height="80px" />
+## import private key
+```
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 importprivkey cVuHNLamShn9pJEVQLy76fdzLPZxgfhenVdK7wo1vBweue4x2dHv
+```
+
+## fund an address
+```
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 sendtoaddress muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
+```
+
+## Chain Abstraction Layer <img align="right" src="./liquality-logo.png" height="80px" />
 
 [![ChainAbstractionLayer](https://travis-ci.org/liquality/chainabstractionlayer.svg?branch=master)](https://travis-ci.org/liquality/chainabstractionlayer)
 [![Standard Code Style](https://img.shields.io/badge/codestyle-standard-brightgreen.svg)](https://github.com/standard/standard)
