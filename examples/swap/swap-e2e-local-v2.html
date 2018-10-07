@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../../dist/index.umd.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="swap.css">
+</head>
+
+<body>
+    <h1>Swap Functionality</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>USER A</h2>
+            <table>
+                <tr>
+                    <td>
+                        <p>I want to swap <input type="text" id="btcFundValue" placeholder="1" /> BTC with <input type="text" id="btcMessage" placeholder="10" /> ETH.</p>
+                        <p><button id="btcGenerateSecret">Generate Secret</button></p>
+                        <p>secret: <textarea id="btcGenerateSecretResult"></textarea></p>
+                        <p>secretHash: <textarea id="btcGenerateSecretResultHash"></textarea></p>
+                        <h3>Initiate swap:</h3>
+                        <p>My BTC address (refundAddress): <input type="text" id="btcRefundAddress" placeholder="muWrnsfYwzv24sAuC1t45JssWttHUtA162" /></p>
+                        <p>My ETH address (recipientAddress): <input type="text" id="ethRecipientAddress" placeholder="0x5a3df33ebab91eb80712493c8ad30855b882c669" /></p>
+                        <p>secretHash: <input type="text" id="btcSecretHash"></p>
+                        <p>expiration: <input type="text" id="btcExpiration" placeholder="10" /></p>
+                        <p><button id="btcInitiateSwap">Initiate Swap</button></p>
+                        <p>swap bytecode: <textarea id="btcSwapBytecode"></textarea></p>
+                        <p>transaction hash: <textarea id="btcInitiateSwapResult"></textarea></p>
+                        <h3>Claim swap:</h3>
+                        <p><strong>Wait until initiation transaction has been confirmed!</strong></p>
+                        <p>secret: <input type="text" id="btcClaimSecret" /></p>
+                        <p>initiationTxHash: <input type="text" id="btcInitiationTxHash" /></p>
+                        <p><button id="btcClaimSwap">Claim Swap</button></p>
+                        <p>transaction hash: <textarea id="btcClaimSwapResult"></textarea></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <thead>
+                <h2>USER B</h2>
+            </thead>
+            <table>
+                <tr>
+                    <td>
+                        <p>I want to swap <input type="text" id="ethFundValue" /> ETH with <input type="text" id="ethMessage" /> BTC.</p>
+                        <p><button id="ethGenerateSecret">Generate Secret</button></p>
+                        <p>secret: <textarea id="ethGenerateSecretResult"></textarea></p>
+                        <p>secretHash: <textarea id="ethGenerateSecretResultHash"></textarea></p>
+                        <h3>Initiate swap:</h3>
+                        <p>My ETH address (refundAddress): <input type="text" id="ethRefundAddress" placeholder="0x1cdf3aac5329aa9d1dee420468a72bad24055885" /></p>
+                        <p>My BTC address (recipientAddress): <input type="text" id="btcRecipientAddress" placeholder="muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9" /></p>
+                        <p>secretHash: <input type="text" id="ethSecretHash"></p>
+                        <p>expiration: <input type="text" id="ethExpiration" placeholder="1568194353" /></p>
+                        <p><button id="ethInitiateSwap">Initiate Swap</button></p>
+                        <p>swap bytecode: <textarea id="ethSwapBytecode"></textarea></p>
+                        <p>transaction hash: <textarea id="ethInitiateSwapResult"></textarea></p>
+                        <h3>Claim swap:</h3>
+                        <p><strong>Wait until initiation transaction has been confirmed!</strong></p>
+                        <p>secret: <input type="text" id="ethClaimSecret" /></p>
+                        <p>initiationTxHash: <input type="text" id="ethInitiationTxHash" /></p>
+                        <p><button id="ethClaimSwap">Claim Swap</button></p>
+                        <p>transaction hash: <textarea id="ethClaimSwapResult"></textarea></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p><code>For errors and logs, check console</code></p>
+    <script>
+    /* global $, ChainAbstractionLayer, web3 */
+    const { Client, providers, networks, crypto } = ChainAbstractionLayer
+    const bitcoin = new Client()
+    bitcoin.addProvider(new providers.bitcoin.BitcoinRPCProvider('http://localhost:8000', 'bitcoin', 'local321', { network: networks.bitcoin_testnet }))
+    bitcoin.addProvider(new providers.bitcoin.BitcoinRPCWalletProvider('http://localhost:8000', 'bitcoin', 'local321', { network: networks.bitcoin_testnet }))
+    bitcoin.addProvider(new providers.bitcoin.BitcoinJsLibSwapProvider({ network: networks.bitcoin_testnet }, 'cVuHNLamShn9pJEVQLy76fdzLPZxgfhenVdK7wo1vBweue4x2dHv', 'cTYiTKhEujcjM4xqgzRHbpCc9Mbtpvqd8VpsRUB6aXygBgg5JsYp'))
+    const ethereum = new Client()
+    ethereum.addProvider(new providers.ethereum.EthereumRPCProvider('http://localhost:8545'))
+    ethereum.addProvider(new providers.ethereum.EthereumMetaMaskProvider(web3.currentProvider))
+    ethereum.addProvider(new providers.ethereum.EthereumSwapProvider())
+
+    function generateSecret(client, prefix) {
+        client.generateSecret($(`#${prefix}Message`).val()).then(result => {
+            $(`#${prefix}GenerateSecretResult`).text(result)
+            $(`#${prefix}GenerateSecretResultHash`).text(crypto.sha256(result))
+        })
+    }
+
+    function initiateSwap(client, prefix) {
+        client.createSwapScript(
+            $(`#${prefix}RecipientAddress`).val(),
+            $(`#${prefix}RefundAddress`).val(),
+            $(`#${prefix}SecretHash`).val(),
+            parseInt($(`#${prefix}Expiration`).val())
+        ).then(result => {
+            $(`#${prefix}SwapBytecode`).text(result)
+        })
+        client.initiateSwap(
+            parseInt($(`#${prefix}FundValue`).val()),
+            $(`#${prefix}RecipientAddress`).val(),
+            $(`#${prefix}RefundAddress`).val(),
+            $(`#${prefix}SecretHash`).val(),
+            parseInt($(`#${prefix}Expiration`).val())
+        ).then(result => {
+            $(`#${prefix}InitiateSwapResult`).text(result)
+        })
+    }
+
+    function claimSwap(client, prefix) {
+        client.claimSwap(
+            $(`#${prefix}InitiationTxHash`).val(),
+            $(`#${prefix}RecipientAddress`).val(),
+            $(`#${prefix}RefundAddress`).val(),
+            $(`#${prefix}ClaimSecret`).val(),
+            parseInt($(`#${prefix}Expiration`).val())
+        ).then(result => {
+            $(`#${prefix}ClaimSwapResult`).text(result)
+        })
+    }
+    $('#btcGenerateSecret').click(generateSecret.bind(null, bitcoin, 'btc'))
+    $('#btcInitiateSwap').click(initiateSwap.bind(null, bitcoin, 'btc'))
+    $('#btcClaimSwap').click(claimSwap.bind(null, bitcoin, 'btc'))
+    $('#ethGenerateSecret').click(generateSecret.bind(null, ethereum, 'eth'))
+    $('#ethInitiateSwap').click(initiateSwap.bind(null, ethereum, 'eth'))
+    $('#ethClaimSwap').click(claimSwap.bind(null, ethereum, 'eth'))
+    </script>
+</body>
+
+</html>
