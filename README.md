@@ -27,6 +27,7 @@ bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 generate 100
 ## import private key
 ```
 bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 importprivkey cVuHNLamShn9pJEVQLy76fdzLPZxgfhenVdK7wo1vBweue4x2dHv
+bitcoin-cli -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332 importprivkey cTYiTKhEujcjM4xqgzRHbpCc9Mbtpvqd8VpsRUB6aXygBgg5JsYp
 ```
 
 ## fund an address
