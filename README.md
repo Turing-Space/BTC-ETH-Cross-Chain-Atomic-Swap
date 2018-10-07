@@ -1,6 +1,6 @@
-#End-to-end Test Case
-1. GOTO https://localhost:9000/examples/swap/_swap-e2e-local.html
-2. Fill in Bitcoin params: 1
+# End-to-end Test Case
+1. GOTO https://localhost:9000/examples/swap/_swap-e2e-local.html 
+2. Fill in Bitcoin params: 100000 (or any)
 3. Click on Generate Secret
 ## A Initiates SWAP on Bitcoin
 4. Copy over Secret Hash to Bitcoin Initiate Swap
@@ -12,8 +12,8 @@
 8. Fill in Secret from A
 9. Fill in Initiate Transaction Hash from B's Initiation on Ethereum
 ## B Claims SWAP on Bitcoin
-8. Fill in Secret from A
-9. Fill in Initiate Transaction Hash from A's Initiation on Bitcoin
+10. Fill in Secret from A
+11. Fill in Initiate Transaction Hash from A's Initiation on Bitcoin
 
 
 # Addresses
