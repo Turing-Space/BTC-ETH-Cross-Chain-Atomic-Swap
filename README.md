@@ -1,7 +1,13 @@
+# BTC - ETH Cross Chain Atomic Swap
+#### The project won the Consensys Sponsorship Prize on the ETHSanFrancisco hackathon. 
+#### Created by HU Yao-Chieh, Tina Lee, and Kevin Gau.
+We built the CrossChain Swap environments for Bitcoin and Ethereum respectively. We implemented the mvp of the idea as a demo to visualize the BTC/ETH swapping process. Description on project deatils is available on ![Devpost](https://devpost.com/software/web-v2-btc). ![Demo Video](https://youtu.be/-IsOF69HrBY)
+
 # End-to-end Test Case
-1. GOTO https://localhost:9000/examples/swap/_swap-e2e-local.html 
-2. Fill in Bitcoin params: 100000 (or any)
-3. Click on Generate Secret
+1. Host the html site on port 9000: `serve-https /Users/tingtinglee/hack/WEB-v2-BTC/examples/swap/swap-e2e-local.html -p 9000`
+2. In the browser, GOTO https://localhost:9000/examples/swap/_swap-e2e-local.html 
+3. Fill in Bitcoin params: 100000 (or any)
+4. Click on Generate Secret
 ## A Initiates SWAP on Bitcoin
 4. Copy over Secret Hash to Bitcoin Initiate Swap
 5. Click on Initiate Swap
@@ -15,12 +21,11 @@
 10. Fill in Secret from A
 11. Fill in Initiate Transaction Hash from A's Initiation on Bitcoin
 
-
 # Addresses
-A's BTC address: muWrnsfYwzv24sAuC1t45JssWttHUtA162
-A's ETH address: 0x5a3df33ebab91eb80712493c8ad30855b882c669
-B's BTC address: muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
-B's ETH address: 0x1cdf3aac5329aa9d1dee420468a72bad24055885
+* A's BTC address: muWrnsfYwzv24sAuC1t45JssWttHUtA162 
+* A's ETH address: 0x5a3df33ebab91eb80712493c8ad30855b882c669
+* B's BTC address: muT9jzX9Jws7X9xE6JZkXcNrzNAfQRDaj9
+* B's ETH address: 0x1cdf3aac5329aa9d1dee420468a72bad24055885
 
 # Bitcoin tips
 ## Host Bitcoin private net
