@@ -1,5 +1,5 @@
 # BTC - ETH Cross Chain Atomic Swap
-#### The project won the Consensys Sponsorship Prize on the ETHSanFrancisco hackathon. 
+#### The project won the Consensys Sponsorship Prize on the [ETHSanFrancisco](https://ethsanfrancisco.com) hackathon. 
 #### Created by HU Yao-Chieh, Tina Lee, and Kevin Gau.
 We built the CrossChain Swap environments for Bitcoin and Ethereum respectively. We implemented the mvp of the idea as a demo to visualize the BTC/ETH swapping process. Description on project deatils is available on [Devpost](https://devpost.com/software/web-v2-btc) with the [demo video](https://youtu.be/-IsOF69HrBY)
 
