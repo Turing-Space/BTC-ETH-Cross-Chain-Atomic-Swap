@@ -6,8 +6,10 @@ We built the CrossChain Swap environments for Bitcoin and Ethereum respectively.
 # End-to-end Test Case
 1. Open Ethereum private node: `ganache-cli`
 1. Open Bitcoin private node (after downloading bitcoin core): 
+
 `bitcoind -txindex -regtest -reindex -rpcpassword=local321 -rpcuser=bitcoin -rpcport=18332`
 1. Host the html site on port 9000: 
+
 `serve-https /Users/tingtinglee/hack/WEB-v2-BTC/examples/swap/swap-e2e-local.html -p 9000`
 2. In the browser, GOTO https://localhost:9000/examples/swap/_swap-e2e-local.html 
 3. Fill in Bitcoin params: 100000 (or any)
